@@ -8,4 +8,8 @@
   Run `npm i` to install the dependencies.
 
   Run `npm run dev` to start the development server.
-  
+
+  ## Deploying to GitHub Pages
+
+  Run `npm run deploy` to build the project and publish the contents of the `dist` directory to the `gh-pages` branch.
+  Make sure you have push access to the repository before running the command.
