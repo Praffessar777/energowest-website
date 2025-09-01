@@ -10,13 +10,13 @@ Run `npm run dev` to start the development server.
 
 ## Deploying to GitHub Pages
 
-Run `npm run deploy` to build the project and publish the contents of the `dist` directory to the `gh-pages` branch using `git subtree`.
+Run `npm run deploy` to build the project and publish the contents of the `dist` directory to the `gh-pages` branch using the `gh-pages` CLI. The `predeploy` script runs `npm run build` automatically before publishing.
 
 Make sure you have push access to the repository before running the command.
 
 ### Custom domain
 
-This project is configured for the `energowest.org` domain.
+This project is configured for the `www.energowest.org` domain.
 
 1. Edit `public/CNAME` and put your domain name inside if you need a different one.
 2. Point the domain’s DNS records to GitHub Pages.
