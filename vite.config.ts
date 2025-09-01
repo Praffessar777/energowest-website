@@ -4,8 +4,8 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  // Use a relative base path so assets load correctly on GitHub Pages
-  base: './',
+  // Serve assets from the root so refreshes on nested routes work on GitHub Pages
+  base: '/',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
