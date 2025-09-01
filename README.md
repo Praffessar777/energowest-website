@@ -16,7 +16,7 @@
 
   ### Custom domain
 
-  This project is configured for the `energowest.org` domain.
+  This project is configured for the `www.energowest.org` domain.
 
   1. Edit `public/CNAME` and put your domain name inside if you need a different one.
   2. Point the domain’s DNS records to GitHub Pages.
