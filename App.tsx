@@ -5,6 +5,7 @@ import { HomePage } from "./pages/HomePage";
 import { AboutPage } from "./pages/AboutPage";
 import { TariffsPage } from "./pages/TariffsPage";
 import { DocumentsPage } from "./pages/DocumentsPage";
+import { ElectricalSafetyPage } from "./pages/ElectricalSafetyPage";
 import { ContactPage } from "./pages/ContactPage";
 import { Toaster } from "./components/ui/sonner";
 
@@ -19,6 +20,7 @@ export default function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/tariffs" element={<TariffsPage />} />
             <Route path="/documents" element={<DocumentsPage />} />
+            <Route path="/electrical-safety" element={<ElectricalSafetyPage />} />
             <Route path="/contact" element={<ContactPage />} />
             {/* Redirect from preview_page.html and other HTML routes to home */}
             <Route path="/preview_page.html" element={<Navigate to="/" replace />} />
