@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, User } from "lucide-react";
 
 export function ContactInfoSection() {
   const contactInfo = [
@@ -16,24 +16,30 @@ export function ContactInfoSection() {
       icon: Phone,
       title: "Телефони",
       details: [
-        "Приймальна: +38 (044) 239-27-55",
-        "Факс: +38 (044) 239-27-54"
+        "Приймальна: +38(044) 239-27-53"
       ]
     },
     {
       icon: Mail,
       title: "Електронна пошта",
       details: [
-        "sales@energzap.org",
-        "bz.energoprog@energzap.org"
+        "office@energowest.org"
       ]
     },
     {
       icon: Clock,
       title: "Режим роботи",
       details: [
-        "Понеділок - П'ятниця: 8:00 - 18:00",
+        "Понеділок - П'ятниця: 9:00 - 18:00",
         "Субота - Неділя: вихідний"
+      ]
+    },
+    {
+      icon: User,
+      title: "Відповідальна особа для контакту зі споживачами",
+      details: [
+        "Директор",
+        "Кузьмінець Юрій Андрійович"
       ]
     }
   ];
@@ -59,33 +65,39 @@ export function ContactInfoSection() {
           </motion.div>
 
           {/* Сітка з контактною інформацією */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 items-start">
             {contactInfo.map((item, index) => (
               <motion.div
                 key={index}
-                className="text-center"
+                className="text-center flex flex-col h-full"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
                 {/* Іконка */}
-                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
-                  <item.icon className="h-8 w-8 text-white" />
+                <div className="h-20 flex items-center justify-center mb-6">
+                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
+                    <item.icon className="h-8 w-8 text-white" />
+                  </div>
                 </div>
 
                 {/* Заголовок */}
-                <h3 className="text-primary text-lg mb-4">
-                  {item.title}
-                </h3>
+                <div className="h-16 flex items-center justify-center mb-4">
+                  <h3 className="text-primary text-lg text-center">
+                    {item.title}
+                  </h3>
+                </div>
 
                 {/* Деталі */}
-                <div className="space-y-2">
-                  {item.details.map((detail, detailIndex) => (
-                    <p key={detailIndex} className="text-muted-foreground text-sm">
-                      {detail}
-                    </p>
-                  ))}
+                <div className="flex-1 flex flex-col justify-start">
+                  <div className="space-y-2">
+                    {item.details.map((detail, detailIndex) => (
+                      <p key={detailIndex} className="text-muted-foreground text-sm">
+                        {detail}
+                      </p>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             ))}
