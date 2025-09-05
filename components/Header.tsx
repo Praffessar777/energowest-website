@@ -10,6 +10,7 @@ const navigation = [
   { name: "Про нас", href: "/about" },
   { name: "Тарифи", href: "/tariffs" },
   { name: "Документи", href: "/documents" },
+  { name: "Електробезпека", href: "/electrical-safety" },
   { name: "Контакти", href: "/contact" },
 ];
 
