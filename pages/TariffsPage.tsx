@@ -6,36 +6,32 @@ import { toast } from "sonner@2.0.3";
 export function TariffsPage() {
   const documents = [
     {
-      title: "Постанова НКРЕКП № 312 про тарифи на 2025 рік",
+      title: "Структура тарифу на послуги з передачі електричної енергії",
       format: "PDF",
-      size: "2.4 МБ",
-      downloadUrl: "#"
+      size: "3.2 МБ",
+      downloadUrl: "/documents/tariffs/676443808df75689340702.pdf"
     },
     {
-      title: "Методика розрахунку вартості електроенергії",
-      format: "PDF", 
-      size: "1.8 МБ",
-      downloadUrl: "#"
-    },
-    {
-      title: "Зразок рахунку за електроенергію",
+      title: "Тарифи на розподіл із застосуванням стимулюючого регулювання 2025 рік",
       format: "PDF",
-      size: "956 КБ", 
-      downloadUrl: "#"
-    },
-    {
-      title: "Умови зміни тарифного плану",
-      format: "PDF",
-      size: "1.2 МБ",
-      downloadUrl: "#"
+      size: "2.8 МБ",
+      downloadUrl: "/documents/tariffs/tariff-stimulating-regulation-2025.pdf"
     }
   ];
 
   const handleDownload = (document: typeof documents[0]) => {
-    // Показуємо повідомлення про демо-версію
-    toast.info("Демо-версія", {
-      description: "Завантаження файлів недоступне в демо-версії сайту. Для отримання документів зверніться до наших менеджерів.",
-      duration: 4000,
+    // Створюємо посилання для завантаження
+    const link = document.createElement('a');
+    link.href = document.downloadUrl;
+    link.download = document.title + '.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Показуємо повідомлення про успішне завантаження
+    toast.success("Завантаження розпочато", {
+      description: `Документ "${document.title}" завантажується на ваш пристрій.`,
+      duration: 3000,
     });
   };
 
