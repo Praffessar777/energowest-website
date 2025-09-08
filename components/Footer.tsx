@@ -72,7 +72,7 @@ export function Footer() {
                 <div className="flex items-center justify-center">
                   <Mail className="h-4 w-4 text-secondary mr-2 flex-shrink-0" />
                   <div className="text-white/70 text-sm">
-                    sales@energzap.org
+                    office@energowest.org
                   </div>
                 </div>
               </div>
@@ -87,7 +87,7 @@ export function Footer() {
                 <Clock className="h-4 w-4 text-secondary mr-2 flex-shrink-0 mt-0.5" />
                 <div className="space-y-1">
                   <div className="text-white/70 text-sm">
-                    Пн-Пт: 8:00 - 18:00
+                    Пн-Пт: 9:00 - 18:00
                   </div>
                   <div className="text-white/70 text-sm">
                     Сб-Нд: вихідний
