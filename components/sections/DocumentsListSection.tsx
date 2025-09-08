@@ -6,6 +6,7 @@ import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { Card, CardContent } from "../ui/card";
 import { toast } from "sonner@2.0.3";
+import { pdfUrlByFileName } from "../../lib/pdfUrls";
 
 interface Document {
   id: string;
@@ -148,7 +149,7 @@ export function DocumentsListSection() {
   });
 
   const buildFileUrl = (fileName: string) =>
-    new URL(fileName, window.location.origin + import.meta.env.BASE_URL).toString();
+    pdfUrlByFileName[fileName] || `${import.meta.env.BASE_URL}${fileName}`;
 
   const handleDownload = (doc: Document) => {
     if (!doc.fileName) {

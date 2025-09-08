@@ -3,6 +3,7 @@ import { FileText, Download, ShieldCheck, Receipt } from "lucide-react";
 import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
 import { useNavigate } from "react-router-dom";
+import { pdfUrlByFileName } from "../../lib/pdfUrls";
 
 export function ImportantDocumentsSection() {
   const navigate = useNavigate();
@@ -29,11 +30,14 @@ export function ImportantDocumentsSection() {
   ];
 
   const handleDownload = (fileName: string) => {
-    const url = new URL(
-      fileName,
-      window.location.origin + import.meta.env.BASE_URL
-    ).toString();
-    window.open(url, "_blank");
+    const url = pdfUrlByFileName[fileName];
+    if (!url) return;
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
