@@ -59,7 +59,7 @@ export function DocumentsListSection() {
       size: "2.8 МБ",
       date: "01.01.2025",
       isOfficial: true,
-      downloadUrl: "/documents/tariffs/tariff-stimulating-regulation-2025.pdf"
+      downloadUrl: "public/docs/676443808df75689340702.pdf"
     },
 
     // Нормативно - правові акти
