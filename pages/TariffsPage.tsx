@@ -9,7 +9,7 @@ export function TariffsPage() {
       title: "Структура тарифу на послуги з передачі електричної енергії",
       format: "PDF",
       size: "3.2 МБ",
-      downloadUrl: "/documents/tariffs/676443808df75689340702.pdf"
+      downloadUrl: "public/docs/676443808df75689340702.pdf"
     },
     {
       title: "Тарифи на розподіл із застосуванням стимулюючого регулювання 2025 рік",
