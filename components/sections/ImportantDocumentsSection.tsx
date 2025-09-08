@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
 import { toast } from "sonner@2.0.3";
 import { useNavigate } from "react-router-dom";
+import { resolvePdfUrl } from "../../lib/pdfUrls";
 
 export function ImportantDocumentsSection() {
   const navigate = useNavigate();
@@ -30,11 +31,18 @@ export function ImportantDocumentsSection() {
   ];
 
   const handleDownload = (fileName: string) => {
-    // Показуємо повідомлення про демо-версію
-    toast.info("Демо-версія", {
-      description: "Завантаження файлів недоступне в демо-версії сайту. Для отримання документів зверніться до наших менеджерів.",
-      duration: 4000,
-    });
+    const url = resolvePdfUrl(fileName);
+    if (!url) {
+      toast.error("Файл недоступний");
+      return;
+    }
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -62,43 +70,56 @@ export function ImportantDocumentsSection() {
 
           {/* Список документів */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {documents.map((document, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="bg-gray-50/30 border border-gray-200/60 hover:border-secondary/30 hover:shadow-lg transition-all duration-300 h-full">
-                  <CardContent className="p-8 text-center flex flex-col h-full">
-                    {/* Іконка документу */}
-                    <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
-                      <document.icon className="h-8 w-8 text-primary" />
-                    </div>
-                    
-                    {/* Назва документу */}
-                    <h3 className="text-primary font-medium mb-4 flex-grow">
-                      {document.title}
-                    </h3>
-                    
-                    {/* Розмір файлу */}
-                    <p className="text-muted-foreground text-sm mb-6">
-                      {document.size}
-                    </p>
-                    
-                    {/* Кнопка завантаження */}
-                    <Button 
-                      onClick={() => handleDownload(document.fileName)}
-                      className="bg-primary hover:bg-primary/90 text-primary-foreground w-full group"
-                    >
-                      <Download className="h-4 w-4 mr-2 group-hover:translate-y-0.5 transition-transform" />
-                      Завантажити
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+            {documents.map((document, index) => {
+              const pdfUrl = resolvePdfUrl(document.fileName);
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="bg-gray-50/30 border border-gray-200/60 hover:border-secondary/30 hover:shadow-lg transition-all duration-300 h-full">
+                    <CardContent className="p-8 text-center flex flex-col h-full">
+                      {/* Іконка документу */}
+                      <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <document.icon className="h-8 w-8 text-primary" />
+                      </div>
+
+                      {/* Назва документу */}
+                      <h3 className="text-primary font-medium mb-4 flex-grow">
+                        {document.title}
+                      </h3>
+
+                      {/* Розмір файлу */}
+                      <p className="text-muted-foreground text-sm mb-6">
+                        {document.size}
+                      </p>
+
+                      {/* Кнопка завантаження */}
+                      <Button
+                        className="bg-primary hover:bg-primary/90 text-primary-foreground w-full group"
+                        asChild
+                      >
+                        <a
+                          href={pdfUrl ?? "#"}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleDownload(document.fileName);
+                          }}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Download className="h-4 w-4 mr-2 group-hover:translate-y-0.5 transition-transform" />
+                          Завантажити
+                        </a>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              );
+            })}
           </div>
 
           {/* Кнопка "Всі документи" */}
