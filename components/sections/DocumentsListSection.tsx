@@ -7,6 +7,7 @@ import { Badge } from "../ui/badge";
 import { Card, CardContent } from "../ui/card";
 import { toast } from "sonner@2.0.3";
 import { resolvePdfUrl } from "../../lib/pdfUrls";
+import { downloadDocument } from "../../lib/downloadDocument";
 
 interface Document {
   id: string;
@@ -241,21 +242,6 @@ export function DocumentsListSection() {
     return matchesSearch && matchesCategory;
   });
 
-  const handleDownload = (doc: Document) => {
-    const url = resolvePdfUrl(doc.fileName);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = doc.title.replace(/[^a-zA-Z0-9а-яА-Я\s]/g, '') + '.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    toast.success("Завантаження розпочато", {
-      description: `Документ "${doc.title}" завантажується на ваш пристрій.`,
-      duration: 3000,
-    });
-  };
-
   const handlePreview = (doc: Document) => {
     const url = resolvePdfUrl(doc.fileName);
     window.open(url, '_blank');
@@ -403,7 +389,7 @@ export function DocumentsListSection() {
                             </Button>
                             {!doc.viewOnly && (
                               <Button
-                                onClick={() => handleDownload(doc)}
+                                onClick={() => downloadDocument(doc.title, doc.fileName)}
                                 className="bg-secondary hover:bg-secondary/90 text-secondary-foreground"
                               >
                                 <Download className="h-4 w-4 mr-2" />
