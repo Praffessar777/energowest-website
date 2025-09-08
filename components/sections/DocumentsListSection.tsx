@@ -47,11 +47,11 @@ export function DocumentsListSection() {
       size: "3.2 МБ",
       date: "20.02.2025",
       isOfficial: true,
-      downloadUrl: "/documents/tariffs/676443808df75689340702.pdf"
+      downloadUrl: "public/docs/676443808df75689340702.pdf"
     },
     {
       id: "24",
-      title: "Тарифи на розподіл із застосуванням стимулюючого регулювання 2025 рік",
+      title: "Тарифи на послуги з розподілу електричної енергії, що діють з 01 січня 2025 року",
       description: "Офіційні тарифи на розподіл електричної енергії із застосуванням стимулюючого регулювання на 2025 рік",
       category: "tariffs",
       categoryLabel: "Стимулююче регулювання",
