@@ -3,7 +3,7 @@ import { AlertTriangle, Phone } from "lucide-react";
 
 export function EmergencyContactSection() {
   const handleEmergencyCall = () => {
-    window.location.href = "tel:+380442392755";
+    window.location.href = "tel:+380442392753";
   };
 
   return (
