@@ -66,7 +66,7 @@ export function Footer() {
                 <div className="flex items-center justify-center">
                   <Phone className="h-4 w-4 text-secondary mr-2 flex-shrink-0" />
                   <div className="text-white/70 text-sm">
-                    +38 (044) 239-27-55
+                    +38 (044) 239-27-53
                   </div>
                 </div>
                 <div className="flex items-center justify-center">
