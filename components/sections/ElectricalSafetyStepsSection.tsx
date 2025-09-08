@@ -2,7 +2,7 @@ export function ElectricalSafetyStepsSection() {
   const steps = [
     {
       number: "1",
-      title: "Збергайте безпечну відстань",
+      title: "Зберігайте безпечну відстань",
       description: "Утримуйтесь на безпечній відстані від місця події"
     },
     {
