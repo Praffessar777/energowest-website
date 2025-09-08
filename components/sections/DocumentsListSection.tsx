@@ -54,12 +54,12 @@ export function DocumentsListSection() {
       title: "Тарифи на послуги з розподілу електричної енергії, що діють з 01 січня 2025 року",
       description: "Офіційні тарифи на розподіл електричної енергії із застосуванням стимулюючого регулювання на 2025 рік",
       category: "tariffs",
-      categoryLabel: "Стимулююче регулювання",
+      categoryLabel: "Тарифна структура",
       format: "PDF",
       size: "2.8 МБ",
       date: "01.01.2025",
       isOfficial: true,
-      downloadUrl: "public/docs/676443808df75689340702.pdf"
+      downloadUrl: "public/docs/Tarifi_na_poslugi_z_rozpodilu_elektrichnoi_energii_shho_dijut_z_01.pdf"
     },
 
     // Нормативно - правові акти
