@@ -41,7 +41,7 @@ export function EmergencyContactSection() {
               <div className="flex items-center justify-center gap-3 mb-3">
                 <Phone className="h-6 w-6 text-red-600" />
                 <span className="text-red-600 text-3xl">
-                  +38 (044) 239-27-55
+                  +38 (044) 239-27-53
                 </span>
               </div>
               <p className="text-red-700/70 text-sm">

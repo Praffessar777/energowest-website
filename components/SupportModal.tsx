@@ -237,7 +237,7 @@ export function SupportModal({ isOpen, onClose }: SupportModalProps) {
                     </p>
                     <div className="flex items-center gap-2">
                       <Phone className="h-4 w-4 text-red-600" />
-                      <span className="text-red-800">+38 (044) 239-27-55 (цілодобово)</span>
+                      <span className="text-red-800">+38 (044) 239-27-53 (цілодобово)</span>
                     </div>
                   </div>
                 </div>
