@@ -2,7 +2,6 @@ import { motion } from "motion/react";
 import { FileText, Download, ShieldCheck, Receipt } from "lucide-react";
 import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
-import { toast } from "sonner@2.0.3";
 import { useNavigate } from "react-router-dom";
 
 export function ImportantDocumentsSection() {
@@ -30,11 +29,11 @@ export function ImportantDocumentsSection() {
   ];
 
   const handleDownload = (fileName: string) => {
-    // Показуємо повідомлення про демо-версію
-    toast.info("Демо-версія", {
-      description: "Завантаження файлів недоступне в демо-версії сайту. Для отримання документів зверніться до наших менеджерів.",
-      duration: 4000,
-    });
+    const url = new URL(
+      fileName,
+      window.location.origin + import.meta.env.BASE_URL
+    ).toString();
+    window.open(url, "_blank");
   };
 
   return (

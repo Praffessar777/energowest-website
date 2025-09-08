@@ -57,6 +57,7 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    open: true,
+    // Disable automatic browser opening to avoid missing xdg-open in CI
+    open: false,
   },
 });

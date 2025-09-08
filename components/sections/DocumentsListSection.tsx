@@ -5,6 +5,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { Card, CardContent } from "../ui/card";
+import { toast } from "sonner@2.0.3";
 
 interface Document {
   id: string;
@@ -17,6 +18,7 @@ interface Document {
   date: string;
   isOfficial?: boolean;
   tags?: string[];
+  fileName?: string;
 }
 
 export function DocumentsListSection() {
@@ -41,7 +43,8 @@ export function DocumentsListSection() {
       format: "PDF",
       size: "2.4 MB",
       date: "15.01.2024",
-      isOfficial: true
+      isOfficial: true,
+      fileName: "license_electricity_supply.pdf"
     },
     {
       id: "2",
@@ -60,8 +63,9 @@ export function DocumentsListSection() {
       category: "tariffs",
       categoryLabel: "Нормативний акт",
       format: "PDF",
-      size: "3.2 MB", 
-      date: "01.01.2024"
+      size: "3.2 MB",
+      date: "01.01.2024",
+      fileName: "electricity_tariffs_2025.pdf",
     },
     {
       id: "4",
@@ -91,7 +95,8 @@ export function DocumentsListSection() {
       categoryLabel: "Зразок договору",
       format: "PDF",
       size: "945 KB",
-      date: "28.02.2024"
+      date: "28.02.2024",
+      fileName: "electricity_contract_template.pdf",
     },
     {
       id: "7",
@@ -142,16 +147,47 @@ export function DocumentsListSection() {
     return matchesSearch && matchesCategory;
   });
 
-  const handleDownload = (document: Document) => {
-    // TODO: Implement actual download functionality
+  const buildFileUrl = (fileName: string) =>
+    new URL(fileName, window.location.origin + import.meta.env.BASE_URL).toString();
+
+  const handleDownload = (doc: Document) => {
+    if (!doc.fileName) {
+      toast.info("Файл недоступний");
+      return;
+    }
+    const url = buildFileUrl(doc.fileName);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = doc.fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
-  const handlePreview = (document: Document) => {
-    // TODO: Implement actual preview functionality
+  const handlePreview = (doc: Document) => {
+    if (!doc.fileName) {
+      toast.info("Файл недоступний");
+      return;
+    }
+    const url = buildFileUrl(doc.fileName);
+    window.open(url, "_blank");
   };
 
   const handleDownloadAll = () => {
-    // TODO: Implement download all functionality
+    const available = documents.filter(d => d.fileName);
+    if (available.length === 0) {
+      toast.info("Файли недоступні");
+      return;
+    }
+    available.forEach(d => {
+      const url = buildFileUrl(d.fileName!);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = d.fileName!;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
   };
 
   return (
@@ -244,9 +280,9 @@ export function DocumentsListSection() {
 
           {/* Список документів */}
           <div className="space-y-6">
-            {filteredDocuments.map((document, index) => (
+            {filteredDocuments.map((doc, index) => (
               <motion.div
-                key={document.id}
+                key={doc.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.05 }}
@@ -264,39 +300,39 @@ export function DocumentsListSection() {
                       <div className="flex-grow">
                         <div className="flex items-start justify-between gap-4 mb-3">
                           <h3 className="text-primary text-lg leading-tight">
-                            {document.title}
+                            {doc.title}
                           </h3>
                           <Badge 
-                            variant={document.isOfficial ? "default" : "secondary"}
-                            className={document.isOfficial ? "bg-primary text-white" : "bg-secondary/20 text-secondary-foreground"}
+                            variant={doc.isOfficial ? "default" : "secondary"}
+                            className={doc.isOfficial ? "bg-primary text-white" : "bg-secondary/20 text-secondary-foreground"}
                           >
-                            {document.categoryLabel}
+                            {doc.categoryLabel}
                           </Badge>
                         </div>
 
                         <p className="text-muted-foreground mb-4 leading-relaxed">
-                          {document.description}
+                          {doc.description}
                         </p>
 
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-6 text-sm text-muted-foreground">
-                            <span>Формат: {document.format}</span>
-                            <span>Розмір: {document.size}</span>
-                            <span>Дата: {document.date}</span>
+                            <span>Формат: {doc.format}</span>
+                            <span>Розмір: {doc.size}</span>
+                            <span>Дата: {doc.date}</span>
                           </div>
 
                           <div className="flex items-center gap-3">
                             <Button
                               variant="outline"
                               size="sm"
-                              onClick={() => handlePreview(document)}
+                              onClick={() => handlePreview(doc)}
                               className="border-gray-300 text-muted-foreground hover:border-secondary/50 hover:text-secondary-foreground"
                             >
                               <Eye className="h-4 w-4 mr-2" />
                               Переглянути
                             </Button>
                             <Button
-                              onClick={() => handleDownload(document)}
+                              onClick={() => handleDownload(doc)}
                               className="bg-secondary hover:bg-secondary/90 text-secondary-foreground"
                             >
                               <Download className="h-4 w-4 mr-2" />
