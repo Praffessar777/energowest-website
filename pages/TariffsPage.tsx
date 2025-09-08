@@ -15,7 +15,7 @@ export function TariffsPage() {
       title: "Тарифи на розподіл із застосуванням стимулюючого регулювання 2025 рік",
       format: "PDF",
       size: "2.8 МБ",
-      downloadUrl: "/documents/tariffs/tariff-stimulating-regulation-2025.pdf"
+      downloadUrl: "public/docs/Tarifi_na_poslugi_z_rozpodilu_elektrichnoi_energii_shho_dijut_z_01.pdf"
     }
   ];
 
