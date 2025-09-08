@@ -1,7 +1,12 @@
 import { motion } from "motion/react";
 import { Download } from "lucide-react";
 import { Button } from "../components/ui/button";
+<<<<<<< codex/fix-download-buttons-on-documents-page-hkrw9q
 import { downloadDocument } from "../lib/downloadDocument";
+=======
+import { toast } from "sonner@2.0.3";
+import { resolvePdfUrl } from "../lib/pdfUrls";
+>>>>>>> main
 
 export function TariffsPage() {
   const documents = [
@@ -22,7 +27,22 @@ export function TariffsPage() {
   ];
 
   const handleDownload = (doc: typeof documents[0]) => {
+<<<<<<< codex/fix-download-buttons-on-documents-page-hkrw9q
     downloadDocument(doc.title, doc.fileName);
+=======
+    const url = resolvePdfUrl(doc.fileName);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = doc.title + ".pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    toast.success("Завантаження розпочато", {
+      description: `Документ "${doc.title}" завантажується на ваш пристрій.`,
+      duration: 3000,
+    });
+>>>>>>> main
   };
 
   return (
