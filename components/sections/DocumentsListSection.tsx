@@ -6,6 +6,7 @@ import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { Card, CardContent } from "../ui/card";
 import { toast } from "sonner@2.0.3";
+import { resolvePdfUrl } from "../../lib/pdfUrls";
 
 interface Document {
   id: string;
@@ -18,7 +19,7 @@ interface Document {
   date: string;
   isOfficial?: boolean;
   tags?: string[];
-  downloadUrl: string;
+  fileName: string;
   isExternal?: boolean;
   viewOnly?: boolean;
 }
@@ -47,7 +48,7 @@ export function DocumentsListSection() {
       size: "3.2 МБ",
       date: "20.02.2025",
       isOfficial: true,
-      downloadUrl: "public/docs/676443808df75689340702.pdf"
+      fileName: "docs/676443808df75689340702.pdf"
     },
     {
       id: "24",
@@ -59,7 +60,7 @@ export function DocumentsListSection() {
       size: "2.8 МБ",
       date: "01.01.2025",
       isOfficial: true,
-      downloadUrl: "public/docs/Tarifi_na_poslugi_z_rozpodilu_elektrichnoi_energii_shho_dijut_z_01.pdf"
+      fileName: "docs/Tarifi_na_poslugi_z_rozpodilu_elektrichnoi_energii_shho_dijut_z_01.pdf"
     },
 
     // Нормативно - правові акти
@@ -73,7 +74,7 @@ export function DocumentsListSection() {
       size: "Онлайн",
       date: "13.04.2017",
       isOfficial: true,
-      downloadUrl: "https://zakon.rada.gov.ua/laws/show/2019-19#Text",
+      fileName: "https://zakon.rada.gov.ua/laws/show/2019-19#Text",
       isExternal: true,
       viewOnly: true
     },
@@ -87,7 +88,7 @@ export function DocumentsListSection() {
       size: "Онлайн",
       date: "11.01.2001",
       isOfficial: true,
-      downloadUrl: "https://zakon.rada.gov.ua/laws/show/2210-14#Text",
+      fileName: "https://zakon.rada.gov.ua/laws/show/2210-14#Text",
       isExternal: true,
       viewOnly: true
     },
@@ -101,7 +102,7 @@ export function DocumentsListSection() {
       size: "Онлайн",
       date: "01.06.2010",
       isOfficial: true,
-      downloadUrl: "https://zakon.rada.gov.ua/laws/show/2297-17#Text",
+      fileName: "https://zakon.rada.gov.ua/laws/show/2297-17#Text",
       isExternal: true,
       viewOnly: true
     },
@@ -115,7 +116,7 @@ export function DocumentsListSection() {
       size: "Онлайн",
       date: "22.09.2016",
       isOfficial: true,
-      downloadUrl: "https://zakon.rada.gov.ua/laws/show/1540-19#Text",
+      fileName: "https://zakon.rada.gov.ua/laws/show/1540-19#Text",
       isExternal: true,
       viewOnly: true
     },
@@ -129,7 +130,7 @@ export function DocumentsListSection() {
       size: "Онлайн",
       date: "09.04.2019",
       isOfficial: true,
-      downloadUrl: "https://zakon.rada.gov.ua/laws/show/887-19#Text",
+      fileName: "https://zakon.rada.gov.ua/laws/show/887-19#Text",
       isExternal: true,
       viewOnly: true
     },
@@ -143,7 +144,7 @@ export function DocumentsListSection() {
       size: "Онлайн",
       date: "14.03.2018",
       isOfficial: true,
-      downloadUrl: "https://zakon.rada.gov.ua/laws/show/v0307874-18#Text",
+      fileName: "https://zakon.rada.gov.ua/laws/show/v0307874-18#Text",
       isExternal: true,
       viewOnly: true
     },
@@ -157,7 +158,7 @@ export function DocumentsListSection() {
       size: "Онлайн",
       date: "27.12.2017",
       isOfficial: true,
-      downloadUrl: "https://zakon.rada.gov.ua/laws/show/v1469874-17#Text",
+      fileName: "https://zakon.rada.gov.ua/laws/show/v1469874-17#Text",
       isExternal: true,
       viewOnly: true
     },
@@ -171,7 +172,7 @@ export function DocumentsListSection() {
       size: "Онлайн",
       date: "14.03.2018",
       isOfficial: true,
-      downloadUrl: "https://zakon.rada.gov.ua/laws/show/v0309874-18#Text",
+      fileName: "https://zakon.rada.gov.ua/laws/show/v0309874-18#Text",
       isExternal: true,
       viewOnly: true
     },
@@ -185,7 +186,7 @@ export function DocumentsListSection() {
       size: "Онлайн",
       date: "14.03.2018",
       isOfficial: true,
-      downloadUrl: "https://zakon.rada.gov.ua/laws/show/v0310874-18#Text",
+      fileName: "https://zakon.rada.gov.ua/laws/show/v0310874-18#Text",
       isExternal: true,
       viewOnly: true
     },
@@ -199,7 +200,7 @@ export function DocumentsListSection() {
       size: "Онлайн",
       date: "14.03.2018",
       isOfficial: true,
-      downloadUrl: "https://zakon.rada.gov.ua/laws/show/v0311874-18#Text",
+      fileName: "https://zakon.rada.gov.ua/laws/show/v0311874-18#Text",
       isExternal: true,
       viewOnly: true
     },
@@ -213,7 +214,7 @@ export function DocumentsListSection() {
       size: "Онлайн",
       date: "14.03.2018",
       isOfficial: true,
-      downloadUrl: "https://zakon.rada.gov.ua/laws/show/v0308874-18#Text",
+      fileName: "https://zakon.rada.gov.ua/laws/show/v0308874-18#Text",
       isExternal: true,
       viewOnly: true
     },
@@ -227,7 +228,7 @@ export function DocumentsListSection() {
       size: "Онлайн",
       date: "27.12.2017",
       isOfficial: true,
-      downloadUrl: "https://zakon.rada.gov.ua/laws/show/v1468874-17#Text",
+      fileName: "https://zakon.rada.gov.ua/laws/show/v1468874-17#Text",
       isExternal: true,
       viewOnly: true
     }
@@ -240,34 +241,33 @@ export function DocumentsListSection() {
     return matchesSearch && matchesCategory;
   });
 
-  const handleDownload = (document: Document) => {
-    // Створюємо посилання для завантаження
+  const handleDownload = (doc: Document) => {
+    const url = resolvePdfUrl(doc.fileName);
     const link = document.createElement('a');
-    link.href = document.downloadUrl;
-    link.download = document.title.replace(/[^a-zA-Z0-9а-яА-Я\s]/g, '') + '.pdf';
+    link.href = url;
+    link.download = doc.title.replace(/[^a-zA-Z0-9а-яА-Я\s]/g, '') + '.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
-    // Показуємо повідомлення про успішне завантаження
+
     toast.success("Завантаження розпочато", {
-      description: `Документ "${document.title}" завантажується на ваш пристрій.`,
+      description: `Документ "${doc.title}" завантажується на ваш пристрій.`,
       duration: 3000,
     });
   };
 
-  const handlePreview = (document: Document) => {
-    // Відкриваємо документ у новій вкладці для перегляду
-    window.open(document.downloadUrl, '_blank');
-    
-    const message = document.isExternal 
-      ? "Перехід на офіційний сайт" 
+  const handlePreview = (doc: Document) => {
+    const url = resolvePdfUrl(doc.fileName);
+    window.open(url, '_blank');
+
+    const message = doc.isExternal
+      ? "Перехід на офіційний сайт"
       : "Документ відкрито";
-    
-    const description = document.isExternal
-      ? `Переходимо до "${document.title}" на офіційному сайті Верховної Ради України.`
-      : `Документ "${document.title}" відкрито у новій вкладці.`;
-    
+
+    const description = doc.isExternal
+      ? `Переходимо до "${doc.title}" на офіційному сайті Верховної Ради України.`
+      : `Документ "${doc.title}" відкрито у новій вкладці.`;
+
     toast.info(message, {
       description: description,
       duration: 3000,
@@ -356,9 +356,9 @@ export function DocumentsListSection() {
 
           {/* Список документів */}
           <div className="space-y-6">
-            {filteredDocuments.map((document, index) => (
+            {filteredDocuments.map((doc, index) => (
               <motion.div
-                key={document.id}
+                key={doc.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.05 }}
@@ -376,18 +376,18 @@ export function DocumentsListSection() {
                       <div className="flex-grow">
                         <div className="flex items-start justify-between gap-4 mb-3">
                           <h3 className="text-primary text-lg leading-tight">
-                            {document.title}
+                            {doc.title}
                           </h3>
-                          <Badge 
-                            variant={document.isOfficial ? "default" : "secondary"}
-                            className={document.isOfficial ? "bg-primary text-white" : "bg-secondary/20 text-secondary-foreground"}
+                          <Badge
+                            variant={doc.isOfficial ? "default" : "secondary"}
+                            className={doc.isOfficial ? "bg-primary text-white" : "bg-secondary/20 text-secondary-foreground"}
                           >
-                            {document.categoryLabel}
+                            {doc.categoryLabel}
                           </Badge>
                         </div>
 
                         <p className="text-muted-foreground mb-4 leading-relaxed">
-                          {document.description}
+                          {doc.description}
                         </p>
 
                         <div className="flex items-center justify-end">
@@ -395,15 +395,15 @@ export function DocumentsListSection() {
                             <Button
                               variant="outline"
                               size="sm"
-                              onClick={() => handlePreview(document)}
+                              onClick={() => handlePreview(doc)}
                               className="border-gray-300 text-muted-foreground hover:border-secondary/50 hover:text-secondary-foreground"
                             >
                               <Eye className="h-4 w-4 mr-2" />
                               Переглянути
                             </Button>
-                            {!document.viewOnly && (
+                            {!doc.viewOnly && (
                               <Button
-                                onClick={() => handleDownload(document)}
+                                onClick={() => handleDownload(doc)}
                                 className="bg-secondary hover:bg-secondary/90 text-secondary-foreground"
                               >
                                 <Download className="h-4 w-4 mr-2" />
