@@ -4,7 +4,7 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  // Use root base path so the site works on a custom domain
+  // Use a relative base so assets load regardless of hosting path
   base: './',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
