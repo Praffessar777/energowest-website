@@ -4,7 +4,8 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/',
+  // Use a relative base path so the app works when served from a subdirectory
+  base: './',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
