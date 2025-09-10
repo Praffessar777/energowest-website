@@ -36,33 +36,6 @@ export function CustomerCabinetSection() {
     }
   ];
 
-  const billData = [
-    {
-      period: "Червень 2025",
-      amount: "4 500 ₴",
-      status: "Не оплачено",
-      statusColor: "text-red-500"
-    },
-    {
-      period: "Травень 2025", 
-      amount: "4 200 ₴",
-      status: "Не оплачено",
-      statusColor: "text-red-500"
-    },
-    {
-      period: "Квітень 2025",
-      amount: "3 750 ₴", 
-      status: "Оплачено",
-      statusColor: "text-green-500"
-    },
-    {
-      period: "Березень 2025",
-      amount: "4 050 ₴",
-      status: "Оплачено", 
-      statusColor: "text-green-500"
-    }
-  ];
-
   return (
     <section className="py-20 bg-gray-50/50 mb-4">
       <div className="container mx-auto px-4">
