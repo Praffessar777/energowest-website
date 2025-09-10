@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { HomePage } from "./pages/HomePage";
@@ -10,9 +10,8 @@ import { ContactPage } from "./pages/ContactPage";
 import { Toaster } from "./components/ui/sonner";
 
 export default function App() {
-  const basename = import.meta.env.BASE_URL.replace(/^\./, "");
   return (
-    <Router basename={basename}>
+    <Router>
       <div className="min-h-screen bg-background">
         <Header />
         <main>
