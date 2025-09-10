@@ -10,8 +10,16 @@ import { ContactPage } from "./pages/ContactPage";
 import { Toaster } from "./components/ui/sonner";
 
 export default function App() {
+  // Normalize Vite's base URL for React Router. Strip leading dots and trailing
+  // slashes, falling back to an empty string for root or relative deployments
+  // ("/" or "./") so routes resolve consistently.
+  const rawBase = import.meta.env.BASE_URL;
+  const basename =
+    rawBase === "/" || rawBase === "./"
+      ? ""
+      : rawBase.replace(/^\./, "").replace(/\/$/, "");
   return (
-    <Router basename="/">
+    <Router basename={basename}>
       <div className="min-h-screen bg-background">
         <Header />
         <main>
