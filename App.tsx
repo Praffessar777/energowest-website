@@ -10,9 +10,8 @@ import { ContactPage } from "./pages/ContactPage";
 import { Toaster } from "./components/ui/sonner";
 
 export default function App() {
-  const basename = import.meta.env.BASE_URL.replace(/^\./, "");
   return (
-    <Router basename={basename}>
+    <Router>
       <div className="min-h-screen bg-background">
         <Header />
         <main>
