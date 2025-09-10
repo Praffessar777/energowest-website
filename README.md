@@ -7,9 +7,21 @@
 
   Run `npm i` to install the dependencies.
 
-  Run `npm run dev` to start the development server.
+Run `npm run dev` to start the development server.
 
-  ## Deploying to GitHub Pages
+## Building for production
 
-  Run `npm run deploy` to build the project and publish the contents of the `dist` directory to the `gh-pages` branch.
-  Make sure you have push access to the repository before running the command.
+ Run `npm run build` to generate a static version of the site in the `dist/` directory. Then preview the result on the same port as the dev server:
+
+```
+npm run build
+npm run preview
+```
+
+The preview script serves `dist/` on `http://localhost:3000`. Vite uses ports in the `4173` range by default, but pinning the preview to `3000` avoids confusion and matches the development server.
+
+Opening `dist/index.html` directly or deploying the `dist/` directory ensures all modules are served with the correct MIME type and prevents the "Failed to load module script" error.
+
+  ## Deployment
+
+  `npm run deploy` currently builds the project and prints a reminder to add hosting logic. After running the script, upload the contents of `dist/` to your hosting provider (e.g. GitHub Pages, Netlify, Vercel).
