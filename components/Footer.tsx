@@ -60,7 +60,7 @@ export function Footer() {
                 <div className="flex items-start justify-center">
                   <MapPin className="h-4 w-4 text-secondary mr-2 flex-shrink-0 mt-0.5" />
                   <div className="text-white/70 text-sm">
-                    м. Київ, вул. Нижній Вал, 7-9, офіс 9
+                    04052, Україна, місто Київ, вул. Нижній Вал(Подільський р-н), будинок, 7-9, поверх, 3, офіс 9
                   </div>
                 </div>
                 <div className="flex items-center justify-center">
