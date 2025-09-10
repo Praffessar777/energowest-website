@@ -231,6 +231,20 @@ export function DocumentsListSection() {
       fileName: "https://zakon.rada.gov.ua/laws/show/v1468874-17#Text",
       isExternal: true,
       viewOnly: true
+    },
+    {
+      id: "23",
+      title: "Постанова НКРЕКП № 312 від 14.03.2018 \"Про затвердження Правил роздрібного ринку електричної енергії\"",
+      description: "Офіційний текст Постанови Національної комісії, що здійснює державне регулювання у сферах енергетики та комунальних послуг № 312 від 14 березня 2018 року \"Про затвердження Правил роздрібного ринку електричної енергії\"",
+      category: "legal",
+      categoryLabel: "Постанова НКРЕКП",
+      format: "HTML",
+      size: "Онлайн",
+      date: "14.03.2018",
+      isOfficial: true,
+      fileName: "https://zakon.rada.gov.ua/laws/show/v0312874-18#Text",
+      isExternal: true,
+      viewOnly: true
     }
   ];
 
