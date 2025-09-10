@@ -4,8 +4,7 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  // Use a relative base so assets load regardless of hosting path
-  base: './',
+  base: '/',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
