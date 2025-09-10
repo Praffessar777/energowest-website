@@ -17,6 +17,7 @@ export default function App() {
     .replace(/^(\.(?=\/))/, "")
     .replace(/\/$/, "");
   return (
+    <Router basename="/">
     <Router basename={basename}>
       <div className="min-h-screen bg-background">
         <Header />
