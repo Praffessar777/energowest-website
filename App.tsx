@@ -11,10 +11,11 @@ import { Toaster } from "./components/ui/sonner";
 
 export default function App() {
   // Derive router basename from Vite's base URL, removing leading dots and
-  // trailing slashes. When served from the root ("/"), use an empty basename so
-  // routes resolve correctly without double slashes.
-  const rawBase = import.meta.env.BASE_URL;
-  const basename = rawBase === "/" ? "" : rawBase.replace(/^\./, "").replace(/\/$/, "");
+  // trailing slashes. Root deployments resolve to an empty string to avoid
+  // double slashes in routes.
+  const basename = import.meta.env.BASE_URL
+    .replace(/^(\.(?=\/))/, "")
+    .replace(/\/$/, "");
   return (
     <Router basename={basename}>
       <div className="min-h-screen bg-background">
