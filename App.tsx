@@ -10,12 +10,16 @@ import { ContactPage } from "./pages/ContactPage";
 import { Toaster } from "./components/ui/sonner";
 
 export default function App() {
+<<<<<<< codex/deploy-site-with-fix_10_09_2025-branch-bbd5s7
   // Derive router basename from Vite's base URL, removing leading dots and
   // trailing slashes. When the app is served from the root ("/"), fallback to
   // an empty basename so routes resolve correctly instead of "//".
   const rawBase = import.meta.env.BASE_URL;
   const basename = rawBase === "/" ? "" : rawBase.replace(/^\./, "").replace(/\/$/, "");
 
+=======
+  const basename = import.meta.env.BASE_URL.replace(/^\./, "");
+>>>>>>> main
   return (
     <Router basename={basename}>
       <div className="min-h-screen bg-background">
