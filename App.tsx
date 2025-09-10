@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { HomePage } from "./pages/HomePage";
@@ -11,7 +11,7 @@ import { Toaster } from "./components/ui/sonner";
 
 export default function App() {
   return (
-    <Router basename="/">
+    <Router>
       <div className="min-h-screen bg-background">
         <Header />
         <main>
