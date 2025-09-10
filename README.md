@@ -7,7 +7,18 @@
 
   Run `npm i` to install the dependencies.
 
-  Run `npm run dev` to start the development server.
+Run `npm run dev` to start the development server.
+
+## Building for production
+
+Run `npm run build` to generate a static version of the site in the `dist/` directory. Serve the files from this folder with any static file server:
+
+```
+npm run build
+npx vite preview
+```
+
+Opening `dist/index.html` directly or deploying the `dist/` directory ensures all modules are served with the correct MIME type and prevents the "Failed to load module script" error.
 
   ## Deploying to GitHub Pages
 
