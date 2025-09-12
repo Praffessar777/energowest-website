@@ -56,6 +56,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "preview": "vite preview --port 3000",
     "deploy": "node scripts/deploy.js"
   }
 }
