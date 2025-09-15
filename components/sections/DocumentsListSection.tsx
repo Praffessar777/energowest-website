@@ -29,10 +29,10 @@ export function DocumentsListSection() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
 
   const categories = [
-    { id: "all", label: "Всі документи", count: 14, icon: FileText },
+    { id: "all", label: "Всі документи", count: 15, icon: FileText },
     { id: "licenses", label: "Ліцензії та дозволи", count: 0, icon: ShieldCheck },
     { id: "tariffs", label: "Тарифи та ціноутворення", count: 2, icon: Receipt },
-    { id: "legal", label: "Нормативно - правові акти", count: 12, icon: Scale },
+    { id: "legal", label: "Нормативно - правові акти", count: 13, icon: Scale },
     { id: "contracts", label: "Договори та зразки", count: 0, icon: Briefcase },
   ];
 
@@ -173,20 +173,6 @@ export function DocumentsListSection() {
       date: "14.03.2018",
       isOfficial: true,
       fileName: "https://zakon.rada.gov.ua/laws/show/v0309874-18#Text",
-      isExternal: true,
-      viewOnly: true
-    },
-    {
-      id: "23",
-      title: "Постанова НКРЕКП № 310 від 14.03.2018 \"Про затвердження Кодексу систем розподілу\"",
-      description: "Офіційний текст Постанови Національної комісії, що здійснює державне регулювання у сферах енергетики та комунальних послуг № 310 від 14 березня 2018 року \"Про затвердження Кодексу систем розподілу\"",
-      category: "legal",
-      categoryLabel: "Постанова НКРЕКП",
-      format: "HTML",
-      size: "Онлайн",
-      date: "14.03.2018",
-      isOfficial: true,
-      fileName: "https://zakon.rada.gov.ua/laws/show/v0310874-18#Text",
       isExternal: true,
       viewOnly: true
     },
