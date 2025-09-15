@@ -29,10 +29,10 @@ export function DocumentsListSection() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
 
   const categories = [
-    { id: "all", label: "Всі документи", count: 14, icon: FileText },
+    { id: "all", label: "Всі документи", count: 15, icon: FileText },
     { id: "licenses", label: "Ліцензії та дозволи", count: 0, icon: ShieldCheck },
     { id: "tariffs", label: "Тарифи та ціноутворення", count: 2, icon: Receipt },
-    { id: "legal", label: "Нормативно - правові акти", count: 12, icon: Scale },
+    { id: "legal", label: "Нормативно - правові акти", count: 13, icon: Scale },
     { id: "contracts", label: "Договори та зразки", count: 0, icon: Briefcase },
   ];
 
